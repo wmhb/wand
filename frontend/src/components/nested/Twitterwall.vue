@@ -28,6 +28,9 @@
       }
     },
     sockets: {
+      gotoSlide: function (slide) {
+        this.$router.push({ path: slide })
+      },
       tweets: function (tweets) {
         this.tweets = tweets
         this.updateTimeStamps()

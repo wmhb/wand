@@ -1,6 +1,8 @@
 <template>
   <keep-alive>
-    <router-view></router-view>
+    <transition name="page-slide" mode="out-in">
+      <router-view></router-view>
+    </transition>
   </keep-alive>
 </template>
 
@@ -128,10 +130,10 @@
   body {
     margin: 0;
     padding: 0;
+    background-color: $prim1;
   }
 
   .twitterwall {
-    background-color: $prim1;
     height: 100vh;
     overflow: hidden;
 
@@ -271,6 +273,21 @@
   }
 
   /*Animatoins*/
+  .page-slide-enter-active {
+    transition: all 100ms ease;
+  }
+
+  .page-slide-leave-active {
+    transition: all 125ms cubic-bezier(1.0, 0.5, 0.8, 1.0);
+  }
+
+  .page-slide-enter,
+  .page-slide-leave-to {
+    transform: translateX(2rem);
+    opacity: 0
+  }
+
+
   .tweet-move {
     transition: all cubic-bezier(.4,0,.2,1) 400ms;
   }

@@ -6,6 +6,8 @@ import Auth from '../auth'
 import Wand from 'components/Wand'
 import Twitterwall from 'components/nested/Twitterwall'
 import Sponsors from 'components/nested/Sponsors'
+import Speakers from 'components/nested/Speakers'
+
 import Admin from 'components/Admin'
 import Login from 'components/Login'
 
@@ -21,6 +23,10 @@ const router = new Router({
         {
           path: '',
           component: Twitterwall
+        },
+        {
+          path: 'speakers',
+          component: Speakers
         },
         {
           path: 'sponsors',

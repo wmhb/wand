@@ -1,6 +1,15 @@
 <template>
   <div>
     <h1>Admin</h1>
+    <h3>Change Slides</h3>
+    <button @click.prevent="gotoSlide('wand')">Wand</button>
+    <button @click.prevent="gotoSlide('speakers')">Speakers</button>
+    <button @click.prevent="gotoSlide('sponsors')">Sponsors</button>
+    <hr>
+    <h3>Events Config</h3>
+    <pre v-if="events"><code>{{events}}</code></pre>
+    <button class="btn" @click.prevent="getEvents()">getEvents</button>
+    <hr>
     <h3>Twitter Config</h3>
     <div>
       <label for="setHashtag">Hashtag</label>
@@ -20,6 +29,7 @@
 </template>
 <script>
   const API_URL = 'http://localhost:8080/api'
+  const EVENTS_API_URL = 'http://localhost:8080/events/all'
 
   import auth from '../auth'
   import axios from 'axios'
@@ -31,10 +41,38 @@
     },
     data () {
       return {
-        hashtag: null
+        hashtag: null,
+        events: null
       }
     },
     methods: {
+      gotoSlide: function (slideName) {
+        axios.post(API_URL + '/slide/set', {name: slideName}, {headers: auth.getAuthHeader()})
+          .then(
+            res => {
+              console.log(res.data)
+            }
+          )
+          .catch(
+            err => {
+              console.log(err.response.status)
+            }
+          )
+      },
+      getEvents: function () {
+        axios.get(EVENTS_API_URL)
+          .then(
+            res => {
+              console.log(res.data)
+              this.events = res.data.events
+            }
+          )
+          .catch(
+            err => {
+              console.log(err.response.status)
+            }
+          )
+      },
       getHashtag: function () {
         axios.get(API_URL + '/twitter/hashtag/get', {headers: auth.getAuthHeader()})
           .then(

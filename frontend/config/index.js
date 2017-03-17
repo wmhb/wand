@@ -33,6 +33,9 @@ module.exports = {
       },
       '/api' : {
         target: 'http://localhost:65510'
+      },
+      '/events' : {
+        target: 'http://localhost:65510'
       }
     },
     // CSS Sourcemaps off by default because relative paths are "buggy"
