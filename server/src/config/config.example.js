@@ -6,7 +6,9 @@ var apiConfig = {
     'access_token_secret': 'YOUR_ACCESS_TOKEN_SECRET',
     'timeout_ms': 60 * 1000
   },
-  secret: 'MY_SUPER_PRIVATE_SECRET'
+  secret: 'MY_SUPER_PRIVATE_SECRET',
+  eventsAPIHost: 'SERVER_URL_AND_PORT',
+  eventsAPIPath: '/MY/PATH/TO/THE/ENDPOINT'
 }
 
 module.exports = apiConfig;

@@ -17,6 +17,7 @@
     "jsonwebtoken": "^7.2.1",
     "minimist": "^1.2.0",
     "moment": "^2.17.1",
+    "request": "^2.79.0",
     "sanitize-html": "^1.14.1",
     "socket.io": "^1.7.2",
     "socketio-jwt": "^4.5.0",
