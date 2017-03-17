@@ -4,13 +4,24 @@ let config = require('./../config/config')
 let twitter = require('./twitter')
 let eventBus = twitter.events
 
+let slide = {
+  current: 'wand'
+}
+
 let router = module.exports = express.Router()
 
 let jwtCheck = jwt({
   secret: config.secret
 })
 
+/*
+ JWT CHECK ALL THE THINGS
+ */
 router.use('/api', jwtCheck)
+
+/*
+ TWITTER
+ */
 
 router.get('/api/twitter/tweets',
   function (req, res) {
@@ -49,6 +60,10 @@ router.get('/api/twitter/stream/restart',
     res.status(200).send()
   })
 
+/*
+SOUNDS
+ */
+
 router.get('/api/sounds/gong',
   function (req, res) {
     eventBus.emit('gong')
@@ -59,4 +74,18 @@ router.get('/api/sounds/music',
   function (req, res) {
     eventBus.emit('music')
     res.sendStatus(200)
+  })
+
+/*
+SLIDE FUNCTIONS
+ */
+
+router.post('/api/slide/set',
+  function (req, res) {
+    let current = slide.current
+    if (req.body.name !== current) {
+      eventBus.emit('gotoSlide', req.body.name)
+      slide.current = req.body.name
+      res.status(200).send()
+    }
   })

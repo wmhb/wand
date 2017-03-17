@@ -1,4 +1,6 @@
+// let config = require('./config/config')
 let util = require('util')
+let request = require('request')
 let express = require('express')
 let app = express()
 let http = require('http').Server(app)
@@ -9,7 +11,16 @@ let port = parseInt(argv.p) || 65510
 let wand = require('./lib/wand')
 let io = wand.listen(http)
 let namespaces = io.nsps
+let events
 
+request('http://127.0.0.1:1234/api/events', function (error, response, body) {
+  if (!error && response.statusCode === 200) {
+    events = body
+    console.log('events', events)
+  } else if (error) {
+    events = error
+  }
+})
 /*
   NODE INIT BOILERPLATE FOO
  */
@@ -18,6 +29,13 @@ app.use(bodyParser.json())
 
 app.use(require('./lib/admin'))
 app.use(require('./lib/auth'))
+
+app.get('/events/all',
+  function (req, res) {
+    res.status(200).send({
+      events: events
+    })
+  })
 
 app.use(function (err, req, res, next) {
   if (err.name === 'StatusError') {

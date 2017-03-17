@@ -42,14 +42,11 @@ function getUserScheme (req) {
 }
 
 app.get('/auth/check', function (req, res) {
-  console.log('/USER/AUTH/', req.headers.authorization)
   try {
     let token = req.headers['authorization'].replace(/^Bearer\s/, '')
-    var decoded = jwt.verify(token, config.secret)
-    console.log('dec', decoded)
+    jwt.verify(token, config.secret)
     res.status(201).send({valid: true})
   } catch (err) {
-    console.log('err', err)
     res.status(401).send({valid: false})
   }
 })
@@ -64,15 +61,17 @@ app.post('/auth/login', function (req, res) {
   let user = _.find(users, userScheme.userSearch)
 
   if (!user) {
+    console.log('[ERROR]'.red.bold, '[wand.auth.login]'.red, '- Unsuccessful login attempt.')
     return res.status(401).send('Ooops! Something went wrong!')
   }
 
   if (user.password !== req.body.password) {
+    console.log('[ERROR]'.red.bold, '[wand.auth.login]'.red, '- User ', user.username, ' supplied wrong password.')
     return res.status(401).send('Ooops! Something went wrong!')
   }
 
   if (user.role === 'admin') {
-    console.log('success...creating token for ' + user.username)
+    console.log('[SUCCESS]'.green.bold, '[wand.auth.login]'.green, '- User ', user.username, ' logged in successfully.')
     res.status(201).send({
       id_token: createAdminToken(user)
     })
