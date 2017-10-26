@@ -2,7 +2,7 @@
   "name": "wand-server",
   "version": "1.0.0",
   "description": "A Webmontag Bremen twitterwall server",
-  "author": "Dennis",
+  "author": "Dennis Gieseler",
   "private": true,
   "scripts": {
     "build": "node build/build.js",

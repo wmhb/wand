@@ -1,8 +1,8 @@
 {
-  "name": "wand",
+  "name": "wand-frontend",
   "version": "1.0.0",
   "description": "A Webmontag Bremen twitterwall",
-  "author": "Dennis",
+  "author": "Dennis Gieseler",
   "private": true,
   "scripts": {
     "dev": "node build/dev-server.js",
