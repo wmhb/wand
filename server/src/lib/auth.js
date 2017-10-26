@@ -1,3 +1,5 @@
+const logger = require('./logger')
+
 let express = require('express')
 let _ = require('underscore')
 let config = require('./../config/config')
@@ -5,18 +7,8 @@ let jwt = require('jsonwebtoken')
 
 let app = module.exports = express.Router()
 
-// XXX: This should be a database of users :).
-let users = [
-  {
-    id: 1,
-    username: 'admin',
-    password: 'pass',
-    role: 'admin'
-  }
-]
-
 function createAdminToken (user) {
-  return jwt.sign(_.omit(user, 'password'), config.secret, { expiresIn: 60 * 5 })
+  return jwt.sign(_.omit(user, 'password'), config.secret, { expiresIn: '4h' })
 }
 
 function getUserScheme (req) {
@@ -58,20 +50,18 @@ app.post('/auth/login', function (req, res) {
     return res.status(401).send('You must submit your username AND password')
   }
 
-  let user = _.find(users, userScheme.userSearch)
+  let user = _.find(config.users, userScheme.userSearch)
 
   if (!user) {
-    console.log('[ERROR]'.red.bold, '[wand.auth.login]'.red, '- Unsuccessful login attempt.')
     return res.status(401).send('Ooops! Something went wrong!')
   }
 
   if (user.password !== req.body.password) {
-    console.log('[ERROR]'.red.bold, '[wand.auth.login]'.red, '- User ', user.username, ' supplied wrong password.')
     return res.status(401).send('Ooops! Something went wrong!')
   }
 
   if (user.role === 'admin') {
-    console.log('[SUCCESS]'.green.bold, '[wand.auth.login]'.green, '- User ', user.username, ' logged in successfully.')
+    logger.info('[wand.auth.login]'.green, ' - User ' + user.username + ' logged in successfully.'.white)
     res.status(201).send({
       id_token: createAdminToken(user)
     })
