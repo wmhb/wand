@@ -7,6 +7,8 @@ import Wand from 'components/Wand'
 import Twitterwall from 'components/nested/Twitterwall'
 import Sponsors from 'components/nested/Sponsors'
 import Speakers from 'components/nested/Speakers'
+import NextWmhb from 'components/nested/NextWmhb'
+import NowPlaying from 'components/nested/NowPlaying'
 
 import Admin from 'components/Admin'
 import Login from 'components/Login'
@@ -19,18 +21,31 @@ const router = new Router({
       path: '/',
       name: 'wand',
       component: Wand,
+      redirect: '/twitter',
       children: [
         {
-          path: '',
+          path: 'twitter',
           component: Twitterwall
         },
         {
-          path: 'speakers',
+          path: 'speakers/:id',
           component: Speakers
+        },
+        {
+          path: 'speakers',
+          redirect: '/speakers/0'
         },
         {
           path: 'sponsors',
           component: Sponsors
+        },
+        {
+          path: 'next',
+          component: NextWmhb
+        },
+        {
+          path: 'nowplaying',
+          component: NowPlaying
         }
       ]
     },
@@ -48,7 +63,6 @@ const router = new Router({
           next()
         }).catch(reason => {
           next({ path: '/login' })
-          return
         })
       }
     }

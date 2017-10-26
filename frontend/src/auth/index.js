@@ -1,16 +1,26 @@
-// URL and endpoint constants
-const API_URL = 'http://localhost:8080/'
-const AUTH_URL = API_URL + 'auth/check/'
-const LOGIN_URL = API_URL + 'auth/login/'
+import Store from '../store'
+import Router from '../router'
+import Axios from 'axios'
 
-import axios from 'axios'
-import router from '../router'
+// Add a response interceptor
+Axios.interceptors.response.use((response) => { // intercept the global error
+  return response
+}, function (error) {
+  let originalRequest = error.config
+  if (error.response.status === 401 && !originalRequest._retry) {
+    originalRequest._retry = true
+    localStorage.removeItem('id_token')
+    Router.push('/')
+    return
+  }
+  // Do something with response error
+  return Promise.reject(error)
+})
 
 export default {
   // Send a request to the login URL and save the returned JWT
   login (context, creds, redirect) {
-    axios.post(LOGIN_URL, creds).then((res) => {
-      console.log('LOGIN', res)
+    Axios.post(Store.getters.config.APILoginUrl, creds).then((res) => {
       localStorage.setItem('id_token', res.data.id_token)
       // Redirect to a specified route
       if (redirect) {
@@ -23,12 +33,12 @@ export default {
   // To log out, we just need to remove the token
   logout () {
     localStorage.removeItem('id_token')
-    router.push('/')
+    Router.push('/')
   },
   checkAuth () {
     let localHeader = this.getAuthHeader()
     return new Promise(function (resolve, reject) {
-      axios.get(AUTH_URL, {headers: localHeader})
+      Axios.get(Store.getters.config.APIAuthUrl, {headers: localHeader})
         .then(
           res => {
             resolve(res.data)
