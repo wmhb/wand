@@ -1,0 +1,97 @@
+// descriptive variables, add as needed:
+// greyscale
+$black          : rgb(0,0,0);
+$darkgrey       : lighten($black, 25%);
+$grey           : lighten($black, 50%);
+$lightgrey      : #bec0c2;
+$lightergrey    : lighten($black, 90%);
+$lightestgrey   : lighten($black, 95%);
+$white          : rgb(255,255,255);
+
+// primarycolors:
+$prim1:  rgb(31, 195, 103);
+$prim2:  rgb(255, 86, 41);
+$prim3:  rgb(255, 177, 41);
+$prim4:  rgb(44,98,185);
+$prim5:  rgb(0,0,0);
+
+
+$success-color: green;
+$alert-color:   red;
+
+
+// Layout Defaults
+$maxWidth:      1440px;
+$bgHeader:      $prim3;
+$text-color:    $black;
+$head-color:    $black;
+$link-color:    $prim1;
+$bg-color:      white;
+$border-color:  $prim2;
+$code-bg-color: $grey;
+
+$btn-text:      white;
+$btn-bg:        $prim3;
+$btn-text-hov:  $black;
+$btn-primary:   transparent;
+$btn-prim-hov:  $white;
+$btn-border:    $prim3;
+
+$btn-border-bright:     white;
+$btn-text-bright:       white;
+$btn-text-bright-hov:   $prim3;
+$btn-prim-bright-hov:   white;
+
+$btn-second:    transparent;
+$btn-success:   $success-color;
+$btn-alert:     $alert-color;
+$highlight-bg:  $prim3;
+
+$nav-text: $lightgrey;
+$nav-text-active: black;
+$mg-bottom: 22px;
+$mg-bottom-small: 12px;
+
+$nav-height: 5rem;
+
+// Typography
+$font-size:         62.5%;
+$font-size-body:    18px;
+$line-height:       $font-size-body*.6;
+$font-main:         "PT Sans", Helvetica, Arial, sans-serif;
+$font-main-bold:    "PT Sans", Helvetica, Arial, sans-serif;
+$font-heading:      "brandon-grotesque", "Helvetica-Neue", Helvetica, Arial, sans-serif;
+$font-heading-light:"brandon-grotesque", "Helvetica-Neue", Helvetica, Arial, sans-serif;
+$font-button:       $font-heading;
+$font-mono:         monospace, sans-serif;
+$font-size-h1:      68px;
+$font-size-h1--admin:      42px;
+$font-size-h2:      25px;
+$font-size-h3:      22px;
+$font-size-h4:      20px;
+$font-size-h5:      20px;
+$font-size-h6:      20px;
+$font-size-small:   9px;
+$font-size-giant:   136px;
+$font-size-big:   118px;
+
+// Extra small screen / phone
+// Note: Deprecated $screen-xs and $screen-phone as of v3.0.1
+$screen-xs:                  480px;
+$screen-xs-min:              $screen-xs;
+$screen-phone:               $screen-xs-min;
+
+// Small screen / tablet
+// Note: Deprecated $screen-sm and $screen-tablet as of v3.0.1
+$screen-sm:                  768px;
+$screen-sm-min:              $screen-sm;
+$screen-tablet:              $screen-sm-min;
+
+// Medium screen / desktop
+// Note: Deprecated $screen-md and $screen-desktop as of v3.0.1
+$screen-md:                  992px;
+$screen-md-min:              $screen-md;
+$screen-desktop:             $screen-md-min;
+
+// Animation Vars
+$ease-cb: cubic-bezier(.4, 0, .2, 1);
