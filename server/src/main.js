@@ -13,24 +13,37 @@ let bodyParser = require('body-parser')
 let wand = require('./lib/wand')
 let io = wand.listen(http)
 let namespaces = io.nsps
-let events
 
-request(config.eventsAPIHost + config.eventsAPIPath, function (error, response, body) {
-  if (!error && response.statusCode === 200) {
-    events = JSON.parse(body)
-    let index = events[0].talks.findIndex(item => item.speaker === 'Du?')
-    if (index >= 0) {
-      events[0].talks.splice(index, 1)
-    }
-    events[0].talks.forEach(function (el, i) {
-      el['imgUrl'] = events[0].url + '/' + el.img
-    })
-  } else if (error) {
-    events = error
+/**
+ * WMHB Events
+ */
+function transformEvents (events) {
+  let index = events[0].talks.findIndex(item => item.speaker === 'Du?' || item.title === 'Du?')
+  if (index >= 0) {
+    events[0].talks.splice(index, 1)
   }
-})
-/*
-  NODE INIT BOILERPLATE FOO
+  events[0].talks.forEach(function (el, i) {
+    el['imgUrl'] = events[0].url + '/' + el.img
+  })
+
+  return events
+}
+
+function getEvents () {
+  return new Promise(function (resolve, reject) {
+    request(config.eventsAPIHost + config.eventsAPIPath, function (err, response, body) {
+      if (err) return reject(err)
+      try {
+        resolve(transformEvents(JSON.parse(body)))
+      } catch (e) {
+        reject(e)
+      }
+    })
+  })
+}
+
+/**
+ * Node Express Boilerplate
  */
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
@@ -44,12 +57,19 @@ app.use(function (req, res, next) {
 app.use(require('./lib/admin'))
 app.use(require('./lib/auth'))
 
-app.get('/events/all',
-  function (req, res) {
-    res.status(200).send({
-      events: events
+app.get('/events/all', function (req, res) {
+  getEvents()
+    .then((event) => {
+      res.status(200).send({
+        events: event
+      })
     })
-  })
+    .catch((e) => {
+      res.status(500, {
+        error: e
+      })
+    })
+})
 
 app.get('/config',
   function (req, res) {

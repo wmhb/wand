@@ -10,7 +10,7 @@
   import audio from '../lib/audio'
 
   export default {
-    name: 'wand',
+    name: 'WandView',
     created: function () {
       audio.music.init()
     },
@@ -32,22 +32,3 @@
     }
   }
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style lang="scss">
-
-  /*Animations*/
-  .page-slide-enter-active {
-    transition: all 100ms ease;
-  }
-
-  .page-slide-leave-active {
-    transition: all 125ms cubic-bezier(1.0, 0.5, 0.8, 1.0);
-  }
-
-  .page-slide-enter,
-  .page-slide-leave-to {
-    transform: translateX(2rem);
-    opacity: 0
-  }
-</style>

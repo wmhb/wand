@@ -1,5 +1,5 @@
 <template>
-  <div class="page-wrapper page-wrapper--centered">
+  <div class="page-wrapper page-wrapper--centered SupporterSubview">
     <div class="container--centered">
       <div>
         <img src="../../../static/bremendigitalmedia.svg" alt="">
@@ -10,7 +10,7 @@
 </template>
 <script>
   export default {
-    name: 'sponsors',
+    name: 'SupporterSubview',
     created: function () {
     },
     sockets: {
@@ -22,19 +22,22 @@
 </script>
 <style lang="scss" scoped>
   @import "~scss/_vars.scss";
-  img {
-    width: 65vw;
-  }
-  div {
-    font-size: 4vmin;
-    text-align: right;
-    font-weight: 700;
 
-    @media screen and (min-width: $screen-sm) {
-      span {
-        color: transparent;
-        -webkit-text-stroke-width: .2rem;
-        -webkit-text-stroke-color: #2c3e50;
+  .SupporterSubview {
+    img {
+      width: 65vw;
+    }
+    div {
+      font-size: 4vmin;
+      text-align: right;
+      font-weight: 700;
+
+      @media screen and (min-width: $screen-sm) {
+        span {
+          color: transparent;
+          -webkit-text-stroke-width: .2rem;
+          -webkit-text-stroke-color: #2c3e50;
+        }
       }
     }
   }

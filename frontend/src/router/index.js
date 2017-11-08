@@ -3,15 +3,15 @@ import Router from 'vue-router'
 
 import Auth from '../auth'
 
-import Wand from 'components/Wand'
-import Twitterwall from 'components/nested/Twitterwall'
-import Sponsors from 'components/nested/Sponsors'
-import Speakers from 'components/nested/Speakers'
-import NextWmhb from 'components/nested/NextWmhb'
-import NowPlaying from 'components/nested/NowPlaying'
+const AdminView = () => import(/* webpackChunkName: "group-admin" */ 'components/AdminView')
+const LoginView = () => import(/* webpackChunkName: "group-admin" */ 'components/LoginView')
+const WandView = () => import('components/WandView')
 
-import Admin from 'components/Admin'
-import Login from 'components/Login'
+const TwitterSubview = () => import('components/wandSubviews/TwitterSubview')
+const SupporterSubview = () => import('components/wandSubviews/SupporterSubview')
+const SpeakersSubview = () => import('components/wandSubviews/SpeakersSubview')
+const NextSubview = () => import('components/wandSubviews/NextSubview')
+const PlayingSubview = () => import('components/wandSubviews/PlayingSubview')
 
 Vue.use(Router)
 
@@ -20,44 +20,44 @@ const router = new Router({
     {
       path: '/',
       name: 'wand',
-      component: Wand,
+      component: WandView,
       redirect: '/twitter',
       children: [
         {
           path: 'twitter',
-          component: Twitterwall
+          component: TwitterSubview
         },
         {
           path: 'speakers/:id',
-          component: Speakers
+          component: SpeakersSubview
         },
         {
           path: 'speakers',
           redirect: '/speakers/0'
         },
         {
-          path: 'sponsors',
-          component: Sponsors
+          path: 'supporter',
+          component: SupporterSubview
         },
         {
           path: 'next',
-          component: NextWmhb
+          component: NextSubview
         },
         {
-          path: 'nowplaying',
-          component: NowPlaying
+          path: 'playing',
+          component: PlayingSubview
         }
       ]
     },
     {
       path: '/login',
       name: 'login',
-      component: Login
+      component: LoginView
     },
     {
       path: '/admin',
       name: 'admin',
-      component: Admin,
+      component: AdminView,
       beforeEnter: (to, from, next) => {
         Auth.checkAuth().then(res => {
           next()

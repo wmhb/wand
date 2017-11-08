@@ -1,5 +1,5 @@
 <template>
-  <div class="page-wrapper page-wrapper--vcentered">
+  <div class="page-wrapper page-wrapper--vcentered SpeakersSubview">
     <transition appear>
 
       <div class="container" v-if="speaker && speaker.img">
@@ -39,7 +39,7 @@
   import imagesLoaded from 'vue-images-loaded'
 
   export default {
-    name: 'speakers',
+    name: 'SpeakersSubview',
     created: function () {
       this.getEvents()
     },
@@ -133,72 +133,74 @@
 <style lang="scss">
   @import "~scss/_vars.scss";
 
-  .speaker__text {
-    font-family: 'brandon', Helvetica, Arial, sans-serif;
-    font-size: 62px;
-    font-weight: 700;
-    position: relative;
-    z-index: 10;
+  .SpeakersSubview {
+    .speaker__text {
+      font-family: 'brandon', Helvetica, Arial, sans-serif;
+      font-size: 62px;
+      font-weight: 700;
+      position: relative;
+      z-index: 10;
 
-    max-width: 60vw;
+      max-width: 60vw;
 
-    &-content {
-      overflow: hidden;
+      &-content {
+        overflow: hidden;
 
-      span {
-          display: inline-block;
-          position: relative;
-          transform: translateY(100%);
+        span {
+            display: inline-block;
+            position: relative;
+            transform: translateY(100%);
+        }
+      }
+    }
+
+    .speaker__name {
+      color: $prim2;
+    }
+
+    .speaker__title {
+      color: $prim1;
+    }
+
+    .speaker__one {
+      background: $prim2;
+    }
+
+    .speaker__two {
+      background: $prim1;
+    }
+
+    .speaker__three {
+      background: $prim3;
+    }
+
+    .speaker__images {
+      position: fixed;
+      right: 0;
+      bottom: 0;
+      transform: translateZ(0);
+      direction: rtl;
+      text-align: right;
+    }
+
+    .speaker__image {
+      display: inline-block;
+      width: 24vw;
+      height: 24vw;
+      transform-style: preserve-3d;
+      backface-visibility: hidden;
+      perspective: 360px;
+      transform: translateY(100%) rotateZ(25deg) scale(.5);
+      mix-blend-mode: multiply;
+      clip-path: polygon(0 5%,100% 0,98% 85%,10% 100%);
+
+      img {
+        width: 100%;
+        height: 100%;
+        mix-blend-mode: multiply;
+        filter: grayscale(100%) brightness(110%);
+        object-fit: cover;
       }
     }
   }
-
-.speaker__name {
-  color: $prim2;
-}
-
-.speaker__title {
-  color: $prim1;
-}
-
-.speaker__one {
-  background: $prim2;
-}
-
-.speaker__two {
-  background: $prim1;
-}
-
-.speaker__three {
-  background: $prim3;
-}
-
-.speaker__images {
-  position: fixed;
-  right: 0;
-  bottom: 0;
-  transform: translateZ(0);
-  direction: rtl;
-  text-align: right;
-}
-
-.speaker__image {
-  display: inline-block;
-  width: 24vw;
-  height: 24vw;
-  transform-style: preserve-3d;
-  backface-visibility: hidden;
-  perspective: 360px;
-  transform: translateY(100%) rotateZ(25deg) scale(.5);
-  mix-blend-mode: multiply;
-  clip-path: polygon(0 5%,100% 0,98% 85%,10% 100%);
-
-  img {
-    width: 100%;
-    height: 100%;
-    mix-blend-mode: multiply;
-    filter: grayscale(100%) brightness(110%);
-    object-fit: cover;
-  }
-}
 </style>
