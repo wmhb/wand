@@ -83,151 +83,149 @@
 <style lang="scss" scoped>
   @import "~scss/_vars.scss";
 
-  .TwitterSubview {
-    .tweet {
-      box-shadow: 0 10px 25px 0 rgba(0, 0, 0, .3), 0 10px 10px 0 rgba(0, 0, 0, .19);
+  .tweet {
+    box-shadow: 0 10px 25px 0 rgba(0, 0, 0, .3), 0 10px 10px 0 rgba(0, 0, 0, .19);
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    margin-bottom: 3rem;
+
+    @media screen and (min-width: $screen-sm-min) {
+      margin-bottom: 0;
+      height: calc(50vh - 6rem);
+    }
+
+    &__container {
+      @media screen and (min-width: $screen-sm-min) {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr;
+        grid-gap: 3rem;
+        width: calc(100vw - 10rem);
+        height: calc(100vh - 8.5rem);
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+      }
+
+      @media screen and (min-width: 1215px) {
+        grid-template-columns: 1fr 1fr 1fr;
+      }
+    }
+
+    &__content {
       position: relative;
-      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+
+      height: 100%;
       overflow: hidden;
-      margin-bottom: 3rem;
+      padding: 3rem;
+
+      font-weight: 700;
+
+      background-color: $bg-color;
+
+      z-index: 2;
+
+      .tweet--photo & {
+        color: $bg-color;
+        background-color: transparent;
+        text-shadow: 0px 1px 0px rgba(0, 0, 0, 1);
+      }
+    }
+
+    &__photo {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    &__avatar,
+    &__meta,
+    &__text {
+      position: relative;
+      z-index: 2;
+    }
+
+    &__avatar,
+    &__meta {
+      display: inline-block;
+      vertical-align: middle;
+    }
+
+    &__avatar {
+      max-width: calc(15% - 1.5rem);
+      min-width: 5rem;
+      margin-right: 1.5rem;
+    }
+
+    &__meta {
+      width: 70%;
+      font-size: 2.8rem;
+      line-height: 1.2;
+
+      & > * {
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
+    }
+
+    &__user--screen {
+      color: #c7d8e6;
+      font-size: 2.1rem;
+      line-height: 2.1rem;
+    }
+
+    &__text {
+      font-size: 3vh;
+      line-height: 1.25;
+      padding: 1.5rem 0;
 
       @media screen and (min-width: $screen-sm-min) {
-        margin-bottom: 0;
-        height: calc(50vh - 6rem);
-      }
-
-      &__container {
-        @media screen and (min-width: $screen-sm-min) {
-          display: grid;
-          grid-template-columns: 1fr;
-          grid-template-rows: 1fr;
-          grid-gap: 3rem;
-          width: calc(100vw - 10rem);
-          height: calc(100vh - 8.5rem);
-          grid-template-columns: 1fr 1fr;
-          grid-template-rows: 1fr 1fr;
-        }
-
-        @media screen and (min-width: 1215px) {
-          grid-template-columns: 1fr 1fr 1fr;
-        }
-      }
-
-      &__content {
-        position: relative;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-
-        height: 100%;
-        overflow: hidden;
-        padding: 3rem;
-
-        font-weight: 700;
-
-        background-color: $bg-color;
-
-        z-index: 2;
-
-        .tweet--photo & {
-          color: $bg-color;
-          background-color: transparent;
-          text-shadow: 0px 1px 0px rgba(0, 0, 0, 1);
-        }
-      }
-
-      &__photo {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-      }
-
-      &__avatar,
-      &__meta,
-      &__text {
-        position: relative;
-        z-index: 2;
-      }
-
-      &__avatar,
-      &__meta {
-        display: inline-block;
-        vertical-align: middle;
-      }
-
-      &__avatar {
-        max-width: calc(15% - 1.5rem);
-        min-width: 5rem;
-        margin-right: 1.5rem;
-      }
-
-      &__meta {
-        width: 70%;
-        font-size: 2.8rem;
-        line-height: 1.2;
-
-        & > * {
-          overflow: hidden;
-          white-space: nowrap;
-          text-overflow: ellipsis;
-        }
-      }
-
-      &__user--screen {
-        color: #c7d8e6;
-        font-size: 2.1rem;
-        line-height: 2.1rem;
-      }
-
-      &__text {
-        font-size: 3vh;
-        line-height: 1.25;
-        padding: 1.5rem 0;
-
-        @media screen and (min-width: $screen-sm-min) {
-          font-size: 2.7vmin;
-        }
-      }
-
-      &--photo:before {
-        content: '';
-        display: block;
-        width: 100%;
-        height: 100%;
-        position: absolute;
-        left: 0;
-        z-index: 1;
-        top: 0;
-        background: transparent linear-gradient(180deg, rgba(0, 0, 0, .25) 0%, rgba(0, 0, 0, .75) 100%);
+        font-size: 2.7vmin;
       }
     }
 
-    .tweet-move {
-      transition: all cubic-bezier(.4, 0, .2, 1) 400ms;
+    &--photo:before {
+      content: '';
+      display: block;
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      left: 0;
+      z-index: 1;
+      top: 0;
+      background: transparent linear-gradient(180deg, rgba(0, 0, 0, .25) 0%, rgba(0, 0, 0, .75) 100%);
     }
+  }
 
-    .tweet-enter,
-    .tweet-leave-to {
-      opacity: 0;
-      transform: scale(0.5);
-    }
+  .tweet-move {
+    transition: all cubic-bezier(.4, 0, .2, 1) 400ms;
+  }
 
-    .tweet-enter-to,
-    .tweet-leave {
-      opacity: 1;
-      transform: scale(1);
-    }
+  .tweet-enter,
+  .tweet-leave-to {
+    opacity: 0;
+    transform: scale(0.5);
+  }
 
-    .tweet-leave-active,
-    .tweet-enter-active {
-      transition: all 400ms cubic-bezier(.4, 0, .2, 1);
-    }
+  .tweet-enter-to,
+  .tweet-leave {
+    opacity: 1;
+    transform: scale(1);
+  }
 
-    time {
-      font-size: 1.6rem;
-      text-align: right;
-      text-transform: uppercase;
-    }
+  .tweet-leave-active,
+  .tweet-enter-active {
+    transition: all 400ms cubic-bezier(.4, 0, .2, 1);
+  }
+
+  time {
+    font-size: 1.6rem;
+    text-align: right;
+    text-transform: uppercase;
   }
 </style>

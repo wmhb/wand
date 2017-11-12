@@ -51,39 +51,37 @@
 <style lang="scss" scoped>
   @import "~scss/_vars.scss";
 
-  .LoginView {
-    h1 {
-      font-size: $font-size-h1;
-      color: $prim2;
-      margin-bottom: 4.5rem;
-      margin-top: 0;
-    }
+  h1 {
+    font-size: $font-size-h1;
+    color: $prim2;
+    margin-bottom: 4.5rem;
+    margin-top: 0;
+  }
 
-    .form__control {
-      max-width: 40rem;
-    }
+  .form__control {
+    max-width: 40rem;
+  }
 
-    .form__input {
-      width: 100%;
-      padding: .5rem;
-      margin-top: .5rem;
-      font-size: $font-size-body;
-      border-radius: 0;
+  .form__input {
+    width: 100%;
+    padding: .5rem;
+    margin-top: .5rem;
+    font-size: $font-size-body;
+    border-radius: 0;
 
-      &.input--light {
-        border: .2rem solid $lightestgrey;
-      }
+    &.input--light {
+      border: .2rem solid $lightestgrey;
     }
+  }
 
-    .btn {
-      font-size: $font-size-body;
-      width: auto;
-      background: $prim1;
-      color: $white;
-      border: 0;
-      padding: 1rem;
-      margin-top: .5rem;
-    }
+  .btn {
+    font-size: $font-size-body;
+    width: auto;
+    background: $prim1;
+    color: $white;
+    border: 0;
+    padding: 1rem;
+    margin-top: .5rem;
   }
 
 </style>

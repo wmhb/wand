@@ -59,57 +59,54 @@
 <style lang="scss" scoped>
   @import "~scss/_vars.scss";
 
-  .PlayingSubview {
-    .np-container {
-      font-size: 3vh;
-      line-height:1.125;
-      display: flex;
-      align-items: center;
-      transform: translateY(15vh);
-    }
+  .np-container {
+    font-size: 3vh;
+    line-height:1.125;
+    display: flex;
+    align-items: center;
+    transform: translateY(15vh);
+  }
 
-    .np-item {
-      padding-left: 5vw;
-    }
+  .np-item {
+    padding-left: 5vw;
+  }
 
-    .playing {
-      font-size: 3vw;
-      text-align: left;
+  .playing {
+    font-size: 3vw;
+    text-align: left;
 
-      span {
-        opacity: 0;
-      }
-    }
-
-    .title,
-    .artist,
-    .playing {
-      text-transform: uppercase;
-    }
-
-    .title,
-    .artist {
-      font-weight: 700;
-    }
-
-    .title {
-      font-size: 5vw;
-      color: transparent;
-      -webkit-text-stroke-width: .2rem;
-      -webkit-text-stroke-color: #2c3e50;
-    }
-
-    .artist {
-      font-size: 3vw;
-    }
-
-    img {
-      width: 30vw;
-      height: auto;
-      flex: 1;
-      object-fit: cover;
-      box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+    span {
+      opacity: 0;
     }
   }
 
+  .title,
+  .artist,
+  .playing {
+    text-transform: uppercase;
+  }
+
+  .title,
+  .artist {
+    font-weight: 700;
+  }
+
+  .title {
+    font-size: 5vw;
+    color: transparent;
+    -webkit-text-stroke-width: .2rem;
+    -webkit-text-stroke-color: #2c3e50;
+  }
+
+  .artist {
+    font-size: 3vw;
+  }
+
+  img {
+    width: 30vw;
+    height: auto;
+    flex: 1;
+    object-fit: cover;
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+  }
 </style>
