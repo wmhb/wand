@@ -26,10 +26,10 @@ jobs:
 
       script:
         - echo Deploying to Prod!
-        - cd frontend && npm install && npm run build
-        - cd ../server && npm install && npm run build
+        - cd $TRAVIS_BUILD_DIR/frontend && npm install && npm run build
+        - cd $TRAVIS_BUILD_DIR/server && npm install && npm run build
       before_deploy:
-        - openssl aes-256-cbc -K $encrypted_c7897279fc89_key -iv $encrypted_c7897279fc89_iv -in deploy_rsa.enc -out /tmp/deploy_rsa -d
+        - openssl aes-256-cbc -K $encrypted_c7897279fc89_key -iv $encrypted_c7897279fc89_iv -in $TRAVIS_BUILD_DIR/deploy_rsa.enc -out /tmp/deploy_rsa -d
         - eval "$(ssh-agent -s)"
         - chmod 600 /tmp/deploy_rsa
         - ssh-add /tmp/deploy_rsa
