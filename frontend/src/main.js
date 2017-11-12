@@ -12,7 +12,7 @@ import Store from './store'
 const getConfig = () => {
   let events = Store.getters.events
   if (!events.length) {
-    axios.get('/config')
+    axios.get('/server/config')
       .then(
         res => {
           Store.dispatch('setConfig', res.data.config)
@@ -29,7 +29,7 @@ const getConfig = () => {
 
 const initApp = () => {
   Vue.prototype.$http = axios
-  Vue.use(VueSocketio, 'http://localhost:' + Store.getters.config.ports.sockets + '/wand')
+  Vue.use(VueSocketio, 'http://' + Store.getters.config.SiteHost + ':' + Store.getters.config.ports.sockets + '/wand')
 
   /* eslint-disable no-new */
   new Vue({

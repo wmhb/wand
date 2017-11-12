@@ -54,7 +54,7 @@
     },
     methods: {
       getInitialTweets: function () {
-        axios.get('/tweets')
+        axios.get(this.$store.getters.config.APIHost + '/tweets')
           .then(
             ({data}) => {
               this.tweets = data
