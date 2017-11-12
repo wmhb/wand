@@ -1,4 +1,4 @@
-const config = require('./config/config')
+const config = require('./config')
 const logger = require('./lib/logger')
 const argv = require('minimist')(process.argv.slice(2))
 const port = parseInt(argv.p) || config.ports.node

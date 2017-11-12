@@ -1,0 +1,39 @@
+language: node_js
+
+node_js:
+- stable
+
+env:
+  matrix:
+  - WAND_DIR=frontend
+  - WAND_DIR=server
+  global:
+  - secure: RD6UDOXjsOrSifLQGGBeA328KscEldJIe/R7tBsUeHd48YWD3lbutsXHOlmirXs6//jYhNCD66xlHDvgAO3KMnDdQNYqqYHZQJofFw8ySzv34Pf7ob54He3Ne2cTYOnldK3gVu3dlVZKBuxQXDisbvYx0XpfXlQ0vOFpGelvA9jYw4qccuHFaAMIFULpZcL+5vClfWqmvgYPGns5Jz2p5ViFSVX9JuxPJRwBtfG6B4Q+PPfQYI7hLqO9b2Opduv7MYhTuVlAvFKpK6P1zrUS8GQaHFYPfUpPbVIkWkIA3nl4lYZoaxSlgayYLUxz7kiTvhxtbCBTjH4wvR48i4y53PpiWVS/xe7GlVvAy6DKM7Mf4cn52ZdOMYAFBv+braAuA206GOh8ExYl3gQf3UCIAv/KbESARM3qKe2O/M13iDLOr8Z09JKnAu6NSvZWr/F0nUs0mM0MjCb+mf/p2EeBr56jGP04OfE+Ep96mU2+DjIzv65XVKcGV8I6l1pS6CMmVTTTX+uBkX8R/x3MIJrxUQJEcNxwXikxSIcggykk44T+NcWkkDOcixdvDGhXkNOGqpbNhcNxym2b5/kWKRifi5o/apG1T5xRFcstmK287Eh87mTgvOiu/Dha6pkDymBEq/GzF4fkJlgDnSPdsPhgI05UaZUTkT50sJwdflBlO+E=
+  - secure: wjk7vZ2qG5euYllDQIWaSLJu29CQe10SSE8wEeFF+BXkD6GXIGCS37vfPpTeyjNVZvSYa6RE0Q9ASMjmJJcIq8bvzOTH8zAzVoCux/SuaA2vv4QRnCwNVc6H7p6+aW+q4R7N+aOJj3wyy7GLIThiqrfCPhzaLx/F2EOf7/yF1A9W1aAzFyzzkfsgSGMwln+P9rZbHtbdpboPUzNUITsnNUV6up4LQ4dtax5SQkwcHHItVunCZmHqAl6PWL1TXceTou7fKgsuaRBDL2qXOv+rRsHVE6PJa9V3nfh6JxcYW3f2WlbK+nMJImE1o+sQ7dLjeeFwDygk1vgbZlGtvA+yZuYQgkFBNWuV8Tz3TYY5eMz73k8R6HLxaGwXc2ouJ3tBqMxsg3MNblRxWcJdumip/LZ+ExzZLz3u6B7kSBvTgbD4qU74MrrqYm61knfCLL/I3vE5Ed9fkWvdJQxJI9I3aRVfJVxJ9Bw9nsiU2/9xob74cIrwtFOYyw1JPCB5kauaiVRILhzEaR4OTrKR6MVqagMHf4U7Yv6NvOR/qMlHhBvdoOqohvkQICRLpx9tj8dR6agr+27Aah+LLHHWhR61KMQe5504U2jvm0VRx7Mp+b5YW3vmX3qoGAvu4dykZbtR12Tx396Nb0w+mhaDH9ob1PGiq4EEW6V743kKE1KkXpA=
+  - secure: DXzBKTtCi2KFGw0RThZaJwvwjLO16ngH7+foTnvOd8erXEBn7wKRwBCdEvOwbOgQXhknfJuBoYq04hIqXe1uraBpmeEqOfww1NV7xPcmVplqYRXnzx3LMj0NN6E5Oin3lW+9RVQbHCUXo9CIADuWucn0uL9wTikMYWgAyk2U3MjgMgyE+uMLD1OaH6AuR0UVlgAZUgx3ESeTeiYckYtkM4NPAE6SMVF4qnhjdw18hW+K+xTDALMy2/wxtVyOG+BCvelwfUuBMjFp/I5Q8RW2OViZLULNCUiE9hEgWG/bE2xsS7F8sNv0Za15OPYjPQDX56+EuXNheIOcl3Q+MoFFlaLthse3RURZPQzWP95CQ8ypiH0UERrddAkcsiGkMuy4cNgCLBvEFGp+kM76yKrWpJjVWAMccZ2KdtHhoaHph//+YYGXgGCrKPY5DW+ZZXDxahPQAKGvOEyc/YjmXy0FnZSJ1o8cNCcqjBhfWEoHLEG2Vd+8L+4Rj/SvfLhGZwntE74N359BKirRYQfng6QqMvtH3b8zMb6P4kEESUmenYhdWDQ0DZKMgg59ABlaKQ+3OMxgtvIG4kaVw83FY6cDWJitCrukE12eXXE/X0GX2FE92Urv7r7s+gbqH8X3hrSrauXxYbtHY68dyM+uoUy1xk4B0M7ibCSanXYn+rkJkgo=
+  - secure: rUgtZVSCkxEim7XNngQ3ZAUUocZ4/S8zcXllGQb6cSkdci8IdLxWCjTi6ZLoXWwfo6BZcBFZzAIscxicHxptdXYZ8fjCsZE+ALZplKZAITFdGVVKm537kYikbwRm/13+yzsT0HzQ6rc5vIGmc8RcDUHLN3K9KX+h7g4Tg52UXw9Dmm8D5A5BKuD+HLBlknh7LXsyxWSW200f4gduVHZye76DyPTjpah/ehKEi0++nBKTw1NvMPPn+HAA6tYEXBMu7Wmi6+NHCCq9h6cbXRENTuAPhiBqno4lWU0neEpb+JQ1fc74NYs6Yo3e2cMV879itM8557Va+ObqUm9dtX1MkP/C6EKqsvsbjFLcXAx1FjDuMsp+2BQFt9QvH/c4TaXSoKUkHi9aurwxKE7Z4JCtwsZgwE0eSxuCXbQj9op1ScOLMhUUQOTKc15EgA6kTfYRpGQESwZrH9oGXLae3VjRpK753aTYmGu7ZMvn0KFc3hEf67J95ThQ0NiltQJMDeL6fmBpBisg4jFIw1BZDBZWVxSD72hLdya6NbHOn8yt4L9VSjRMVHxLmvNshvk2UyF2283eEc+jEiXBqHWmtGam0kqBxx6NsTXYqxmFv5kvBeWlzk6m0XBFQKUSDFZ4GjqzuJaQjFExs4/dfNpo+PJlYn50F1MR0GGfWAsU0MOB58k=
+
+script: cd $WAND_DIR && npm install && npm run build
+
+jobs:
+  include:
+    - stage: deploy
+      addons:
+        ssh_known_hosts:
+          - $DEPLOY_SERVER
+      before_script:
+        - echo -e "Host $DEPLOY_SERVERntStrictHostKeyChecking non" >> ~/.ssh/config
+      script:
+        - echo Deploying to Prod!
+      before_deploy:
+        - openssl aes-256-cbc -K $encrypted_c7897279fc89_key -iv $encrypted_c7897279fc89_iv -in deploy_rsa.enc -out /tmp/deploy_rsa -d
+        - eval "$(ssh-agent -s)"
+        - chmod 600 /tmp/deploy_rsa
+        - ssh-add /tmp/deploy_rsa
+
+      deploy:
+        - provider: script
+          skip_cleanup: true
+          script: ssh -p22 $DEPLOY_USER@$DEPLOY_SERVER "mkdir -p $CLIENT_DIR/_tmp" && rsync -rav -e ssh --exclude='.git/' --delete-excluded ./frontend/dist $DEPLOY_USER@$DEPLOY_SERVER:$CLIENT_DIR/_tmp && ssh -p22 $DEPLOY_USER@$DEPLOY_SERVER "rm -f $CLIENT_DIR/* 2>/dev/null && mv $CLIENT_DIR/_tmp/* $CLIENT_DIR && rm -rf $CLIENT_DIR/_tmp" && ssh -p22 $DEPLOY_USER@$DEPLOY_SERVER "svc -d ~/service/wand-server/ && rm $SERVER_DIR/main.js $SERVER_DIR/package.json" && rsync -rav -e ssh --exclude='.git/' --exclude='.DS_STORE' --delete-excluded ./server/dist ./server/package.json $DEPLOY_USER@$DEPLOY_SERVER:$SERVER_DIR && ssh -p22 $DEPLOY_USER@$DEPLOY_SERVER "cd $SERVER_DIR && npm install && svc -u ~/service/wand-server/"
+          on:
+            branch: master

@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/wmhb/wand.svg?branch=travis)](https://travis-ci.org/wmhb/wand)
+
 # wand
 
 > A Webmontag Bremen twitterwall

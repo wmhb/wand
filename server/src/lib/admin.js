@@ -1,7 +1,7 @@
+const config = require('./config')
 const logger = require('./logger')
 let express = require('express')
 let jwt = require('express-jwt')
-let config = require('./../config/config')
 let twitter = require('./twitter')
 let eventBus = twitter.events
 

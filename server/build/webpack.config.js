@@ -2,8 +2,9 @@ var webpack = require('webpack')
 var path = require('path')
 var fs = require('fs')
 
-
-var nodeModules = {}
+var nodeModules = {
+  './config': 'require("./config")'
+}
 
 fs.readdirSync('node_modules')
   .filter(function (x) {
@@ -38,7 +39,7 @@ var webpackConfig = {
       {
         test: /\.js$/,
         loader: 'eslint-loader',
-        enforce: "pre",
+        enforce: 'pre',
         include: [resolve('src'), resolve('test')],
         options: {
           configFile: './.eslintrc',
@@ -52,34 +53,6 @@ var webpackConfig = {
         include: [resolve('src'), resolve('test')]
       }
     ]
-    //rules: [
-    //  {
-    //    test: /\.js$/,
-    //    exclude: /node_modules/,
-    //    enforce: 'pre',
-    //    use: [{loader: 'eslint-loader', options: {
-    //      failOnError: true,
-    //      formatter: require('eslint-friendly-formatter')
-    //    }}],
-    //  },
-    //  // other rules
-    //],
-    //loaders: [
-    //  {
-    //    test: /\.js$/,
-    //    loader: 'babel-loader',
-    //    include: [resolve('src'), resolve('test')]
-    //  },
-    //  {
-    //    test: /\.(js)$/,
-    //    loader: 'eslint-loader',
-    //    enforce: 'pre',
-    //    include: [resolve('src'), resolve('test')],
-    //    options: {
-    //      formatter: require('eslint-friendly-formatter')
-    //    }
-    //  }
-    //]
   },
   devtool: '#source-map',
   output: {

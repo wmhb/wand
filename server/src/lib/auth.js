@@ -1,8 +1,7 @@
+const config = require('./config')
 const logger = require('./logger')
-
 let express = require('express')
 let _ = require('underscore')
-let config = require('./../config/config')
 let jwt = require('jsonwebtoken')
 
 let app = module.exports = express.Router()
