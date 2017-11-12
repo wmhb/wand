@@ -37,18 +37,6 @@ jobs:
       deploy:
         - provider: script
           skip_cleanup: true
-          script:
-            - ssh -p22 $DEPLOY_USER@$DEPLOY_SERVER "mkdir -p $CLIENT_DIR/_tmp"
-            - echo -e "RSYNC FRONTEND"
-            - rsync -rav -e ssh --exclude='.git/' --exclude=.DS_Store --delete-excluded $TRAVIS_BUILD_DIR/frontend/dist/* $DEPLOY_USER@$DEPLOY_SERVER:$CLIENT_DIR/_tmp
-            - echo -e "REMOVE OLD FILES"
-            - ssh -p22 $DEPLOY_USER@$DEPLOY_SERVER "rm -rf $CLIENT_DIR/index.html $CLIENT_DIR/static || true  && mv $CLIENT_DIR/_tmp/* $CLIENT_DIR && rm -rf $CLIENT_DIR/_tmp"
-            - echo -e "MOVED FILES"
-            - echo -e "STOP SERVER AND REMOVE OLD SERVER FILES"
-            - ssh -p22 $DEPLOY_USER@$DEPLOY_SERVER "rm -f $SERVER_DIR/main.js $SERVER_DIR/package.json"
-            - echo -e "RSYNC SERVER"
-            - rsync -rav -e ssh --exclude='.git/' --exclude=.DS_Store --delete-excluded $TRAVIS_BUILD_DIR/server/dist/main.js $TRAVIS_BUILD_DIR/server/package.json $DEPLOY_USER@$DEPLOY_SERVER:$SERVER_DIR
-            - echo -e "INSTALL NEW DEPS"
-            - ssh -p22 $DEPLOY_USER@$DEPLOY_SERVER "cd $SERVER_DIR && npm install"
+          script: ssh -p22 $DEPLOY_USER@$DEPLOY_SERVER "mkdir -p $CLIENT_DIR/_tmp" && echo -e "RSYNC FRONTEND" && rsync -rav -e ssh --exclude='.git/' --exclude=.DS_Store --delete-excluded $TRAVIS_BUILD_DIR/frontend/dist/* $DEPLOY_USER@$DEPLOY_SERVER:$CLIENT_DIR/_tmp && echo -e "REMOVE OLD FILES" && ssh -p22 $DEPLOY_USER@$DEPLOY_SERVER "rm -rf $CLIENT_DIR/index.html $CLIENT_DIR/static || true  && mv $CLIENT_DIR/_tmp/* $CLIENT_DIR && rm -rf $CLIENT_DIR/_tmp" && echo -e "MOVED FILES" && echo -e "STOP SERVER AND REMOVE OLD SERVER FILES" && ssh -p22 $DEPLOY_USER@$DEPLOY_SERVER "rm -f $SERVER_DIR/main.js $SERVER_DIR/package.json" && echo -e "RSYNC SERVER" && rsync -rav -e ssh --exclude='.git/' --exclude=.DS_Store --delete-excluded $TRAVIS_BUILD_DIR/server/dist/main.js $TRAVIS_BUILD_DIR/server/package.json $DEPLOY_USER@$DEPLOY_SERVER:$SERVER_DIR && echo -e "INSTALL NEW DEPS" && ssh -p22 $DEPLOY_USER@$DEPLOY_SERVER "cd $SERVER_DIR && npm install"
           on:
             branch: master
