@@ -75,6 +75,8 @@ app.get('/config',
   function (req, res) {
     res.status(200).send({
       config: {
+        SiteHost: config.SiteHost,
+        APIHost: config.APIHost,
         APIUrl: config.APIHost + config.APIUrl,
         APIEvents: config.APIHost + config.APIEventsUrl,
         APILoginUrl: config.APIHost + config.APILoginUrl,
@@ -98,7 +100,7 @@ http.listen(port, (err) => {
     return err
   }
   logger.info('[main.http.listen]'.green, ' - listening on http://localhost:' + port + ' with ARGS: [' + util.inspect(argv, false, null) + ']'.white)
-  logger.info('[main.http.listen]'.green, ' - socket.io listening on namespaces: ' + Object.keys(namespaces).toString() + ''.white)
+  logger.info('[main.http.listen]'.green, ' - socket.io listening on port: ' + config.ports.sockets + ' with namespaces: ' + Object.keys(namespaces).toString() + ''.white)
 })
 
 // Kill Process correctly

@@ -21,6 +21,7 @@ var apiConfig = {
     duration: 5000
   },
   secret: 'MY_SUPER_PRIVATE_SECRET',
+  SiteHost: 'localhost',
   APIHost: '/server',
   APIUrl: '/api',
   APIEventsUrl: '/events/all',
