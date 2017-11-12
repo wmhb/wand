@@ -22,9 +22,12 @@ jobs:
         ssh_known_hosts:
           - $DEPLOY_SERVER
       before_script:
-        - echo -e "Host $DEPLOY_SERVERntStrictHostKeyChecking non" >> ~/.ssh/config
+        - echo -e "Host $DEPLOY_SERVER\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
+
       script:
         - echo Deploying to Prod!
+        - cd frontend && npm install && npm run build
+        - cd ../server && npm install && npm run build
       before_deploy:
         - openssl aes-256-cbc -K $encrypted_c7897279fc89_key -iv $encrypted_c7897279fc89_iv -in deploy_rsa.enc -out /tmp/deploy_rsa -d
         - eval "$(ssh-agent -s)"
