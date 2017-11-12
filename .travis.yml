@@ -25,7 +25,7 @@ jobs:
         - echo -e "Host $DEPLOY_SERVER\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
 
       script:
-        - echo Deploying to Prod!
+        - echo -e "Building for a master branch push - building and deploying."
         - cd $TRAVIS_BUILD_DIR/frontend && npm install && npm run build
         - cd $TRAVIS_BUILD_DIR/server && npm install && npm run build
       before_deploy:
@@ -39,10 +39,16 @@ jobs:
           skip_cleanup: true
           script:
             - ssh -p22 $DEPLOY_USER@$DEPLOY_SERVER "mkdir -p $CLIENT_DIR/_tmp"
-            - rsync -rav -e ssh --exclude='.git/' --delete-excluded $TRAVIS_BUILD_DIR/frontend/dist/* $DEPLOY_USER@$DEPLOY_SERVER:$CLIENT_DIR/_tmp
-            - ssh -p22 $DEPLOY_USER@$DEPLOY_SERVER "rm -f $CLIENT_DIR/* 2>/dev/null && mv $CLIENT_DIR/_tmp/* $CLIENT_DIR && rm -rf $CLIENT_DIR/_tmp"
-            - ssh -p22 $DEPLOY_USER@$DEPLOY_SERVER "svc -d ~/service/wand-server/ && rm $SERVER_DIR/main.js $SERVER_DIR/package.json"
-            - rsync -rav -e ssh --exclude='.git/' --exclude='.DS_STORE' --delete-excluded $TRAVIS_BUILD_DIR/server/dist/main.js $TRAVIS_BUILD_DIR/server/package.json $DEPLOY_USER@$DEPLOY_SERVER:$SERVER_DIR
-            - ssh -p22 $DEPLOY_USER@$DEPLOY_SERVER "cd $SERVER_DIR && npm install && svc -u ~/service/wand-server/"
+            - echo -e "RSYNC FRONTEND"
+            - rsync -rav -e ssh --exclude='.git/' --exclude=.DS_Store --delete-excluded $TRAVIS_BUILD_DIR/frontend/dist/* $DEPLOY_USER@$DEPLOY_SERVER:$CLIENT_DIR/_tmp
+            - echo -e "REMOVE OLD FILES"
+            - ssh -p22 $DEPLOY_USER@$DEPLOY_SERVER "rm -rf $CLIENT_DIR/index.html $CLIENT_DIR/static || true  && mv $CLIENT_DIR/_tmp/* $CLIENT_DIR && rm -rf $CLIENT_DIR/_tmp"
+            - echo -e "MOVED FILES"
+            - echo -e "STOP SERVER AND REMOVE OLD SERVER FILES"
+            - ssh -p22 $DEPLOY_USER@$DEPLOY_SERVER "rm -f $SERVER_DIR/main.js $SERVER_DIR/package.json"
+            - echo -e "RSYNC SERVER"
+            - rsync -rav -e ssh --exclude='.git/' --exclude=.DS_Store --delete-excluded $TRAVIS_BUILD_DIR/server/dist/main.js $TRAVIS_BUILD_DIR/server/package.json $DEPLOY_USER@$DEPLOY_SERVER:$SERVER_DIR
+            - echo -e "INSTALL NEW DEPS"
+            - ssh -p22 $DEPLOY_USER@$DEPLOY_SERVER "cd $SERVER_DIR && npm install"
           on:
             branch: master
